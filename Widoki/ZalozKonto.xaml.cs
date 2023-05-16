@@ -19,21 +19,27 @@ namespace ListaZadan.Widoki
     /// </summary>
     public partial class ZalozKonto : Window
     {
+        Zaloguj zaloguj;
+
         public ZalozKonto()
         {
             InitializeComponent();
         }
 
+        public ZalozKonto(Zaloguj zaloguj)
+        {
+            this.zaloguj = zaloguj;
+            InitializeComponent();
+        }
+
         private void Zaloguj_Click(object sender, RoutedEventArgs e)
         {
-            var zaloguj = new Zaloguj();
             zaloguj.Show();
             Close();
         }
 
         private void ZalozKonto_Click(object sender, RoutedEventArgs e)
         {
-            var zaloguj = new Zaloguj();
             zaloguj.Show();
             Close();
         }

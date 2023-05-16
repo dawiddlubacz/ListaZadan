@@ -6,4 +6,13 @@
         xmlns:local="clr-namespace:ListaZadan"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
+
+  <Grid Background="#FF6E85CC">
+    <DataGrid x:Name="ListaZadan" AutoGenerateColumns="False" Width="400" ColumnWidth="*">
+      <DataGrid.Columns >
+        <DataGridTextColumn Header="Id" Binding="{Binding ZadanieId}"/>
+        <DataGridTextColumn Header="Nazwa" Binding="{Binding Nazwa}"/>
+      </DataGrid.Columns>
+    </DataGrid>
+  </Grid>
 </Window>

@@ -20,23 +20,28 @@ namespace ListaZadan.Widoki
     /// </summary>
     public partial class Zaloguj : Window
     {
+        MainWindow MainWindow;
         public Zaloguj()
         {
+            InitializeComponent();
+        }
+        public Zaloguj(MainWindow MainWindow)
+        {
+            this.MainWindow = MainWindow;
             InitializeComponent();
         }
 
         private void ZalozKonto_Click(object sender, RoutedEventArgs e)
         {
-            var zaloz = new ZalozKonto();
+            var zaloz = new ZalozKonto(this);
             zaloz.Show();
-            Close();
+            Hide();
         }
 
         private void Zaloguj_Click(object sender, RoutedEventArgs e)
         {
-            var main = new MainWindow();
-            main.Show();
-            Close();
+            MainWindow.Show();
+            Hide();
         }
     }
 }

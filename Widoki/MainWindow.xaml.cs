@@ -25,9 +25,20 @@ namespace ListaZadan
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow()
+        Context Context;
+
+        public MainWindow(Context Context)
         {
+            this.Context = Context;
             InitializeComponent();
+            WyswietlZadania();
+            //ObservableCollection<Zadanie> zadania = new ObservableCollection<Zadanie>(lista);
+        }
+
+        private void WyswietlZadania()
+        {
+            var listaZadan = Context.Zadania.ToList();
+            ListaZadan.ItemsSource = listaZadan;
         }
     }
 }
