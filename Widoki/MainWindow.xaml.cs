@@ -31,14 +31,24 @@ namespace ListaZadan
         {
             this.Context = Context;
             InitializeComponent();
+            ListaKategorii.SelectedIndex = 0;
             WyswietlZadania();
             WyswietlKategorie();
         }
 
         private void WyswietlZadania()
         {
-            var listaZadan = Context.Zadania.ToList();
-            ListaZadan.ItemsSource = listaZadan;
+            var kategoria = ListaKategorii.SelectedItem as Kategoria;
+            if (kategoria != null)
+            {
+                var zadania = Context.Zadania.Select(zadanie => new Zadanie
+                {
+                    ZadanieId = zadanie.ZadanieId,
+                    Nazwa = zadanie.Nazwa,
+                    KategoriaId = zadanie.KategoriaId,
+                }).Where(zadanie => zadanie.KategoriaId == kategoria.KategoriaId).ToList();
+                ListaZadan.ItemsSource = zadania;
+            }
         }
 
         private void WyswietlKategorie()
@@ -72,12 +82,14 @@ namespace ListaZadan
 
         private void DodajZadaniePole_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            DodajZadaniePole.Text = "";
+            if (DodajZadaniePole.Text == "Dodaj zadanie...")
+                DodajZadaniePole.Text = "";
         }
 
         private void DodajKategoriePole_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            DodajKategoriePole.Text = "";
+            if (DodajKategoriePole.Text == "Dodaj kategorie...")
+                DodajKategoriePole.Text = "";
         }
 
         private void DodajKategoriePole_KeyDown(object sender, KeyEventArgs e)
@@ -86,7 +98,7 @@ namespace ListaZadan
             {
                 var kategoria = new Kategoria
                 {
-                    Nazwa = DodajKategoriePole.Text
+                    Nazwa = DodajKategoriePole.Text,
                 };
 
                 Context.Kategorie.Add(kategoria);
@@ -103,11 +115,19 @@ namespace ListaZadan
             if (przycisk != null)
             {
                 var zad = przycisk.DataContext as Zadanie;
-                var zadanie = Context.Zadania.Find(zad.ZadanieId);
-                Context.Zadania.Remove(zadanie);
-                Context.SaveChanges();
-                WyswietlZadania();
+                if (zad != null)
+                {
+                    var zadanie = Context.Zadania.Find(zad.ZadanieId);
+                    Context.Zadania.Remove(zadanie);
+                    Context.SaveChanges();
+                    WyswietlZadania();
+                }
             }
+        }
+
+        private void ListaKategorii_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            WyswietlZadania();
         }
     }
 }
