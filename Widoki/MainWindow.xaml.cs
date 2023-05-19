@@ -95,5 +95,19 @@ namespace ListaZadan
                 DodajKategoriePole.Text = "";
             }
         }
+
+        private void PrzyciskUsun_Click(object sender, RoutedEventArgs e)
+        {
+            var przycisk = sender as Button;
+
+            if (przycisk != null)
+            {
+                var zad = przycisk.DataContext as Zadanie;
+                var zadanie = Context.Zadania.Find(zad.ZadanieId);
+                Context.Zadania.Remove(zadanie);
+                Context.SaveChanges();
+                WyswietlZadania();
+            }
+        }
     }
 }

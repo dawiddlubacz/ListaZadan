@@ -12,8 +12,16 @@
       <DataGrid.Columns >
         <DataGridTextColumn Header="Id" Binding="{Binding ZadanieId}"/>
         <DataGridTextColumn Header="Nazwa" Binding="{Binding Nazwa}"/>
+        <DataGridTemplateColumn Header="Akcja">
+          <DataGridTemplateColumn.CellTemplate>
+            <DataTemplate>
+              <Button x:Name="PrzyciskUsun" Click="PrzyciskUsun_Click">Usuń</Button>
+            </DataTemplate>
+          </DataGridTemplateColumn.CellTemplate>
+        </DataGridTemplateColumn>
       </DataGrid.Columns>
     </DataGrid>
+
     <TextBox Name="DodajZadaniePole" PreviewMouseLeftButtonDown="DodajZadaniePole_PreviewMouseLeftButtonDown" KeyDown="DodajZadaniePole_KeyDown" HorizontalAlignment="Left" Margin="284,380,0,0" TextWrapping="Wrap" Text="Dodaj zadanie..." VerticalAlignment="Top" Width="212" Height="27" FontSize="16"/>
     <ListBox x:Name="ListaKategorii"  Margin="107,40,537,78"/>
     <TextBox Name="DodajKategoriePole" PreviewMouseLeftButtonDown="DodajKategoriePole_PreviewMouseLeftButtonDown" KeyDown="DodajKategoriePole_KeyDown" HorizontalAlignment="Left" Margin="116,380,0,0" TextWrapping="Wrap" Text="Dodaj kategorie..." VerticalAlignment="Top" Width="138" Height="27" FontSize="16"/>
