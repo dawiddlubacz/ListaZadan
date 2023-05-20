@@ -46,7 +46,7 @@ namespace ListaZadan.Widoki
         private void ZalozKonto_Click(object sender, RoutedEventArgs e)
         {
             var login = LoginPole.Text;
-            var haslo = HasloPole.Text;
+            var haslo = HasloPole.Password;
 
             var uzytkownik = Context.Uzytkownicy.FirstOrDefault(uzyt => uzyt.Login == login);
             if (uzytkownik != null)
@@ -62,9 +62,6 @@ namespace ListaZadan.Widoki
             });
 
             Context.SaveChanges();
-            //var zaloguj = new Zaloguj(this, Context);
-            //zaloguj.Show();
-
             MainWindow.Show();
             Close();
         }

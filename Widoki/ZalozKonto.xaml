@@ -11,7 +11,7 @@
       <TextBlock x:Name="LoginTekst" HorizontalAlignment="Left" Margin="125,31,0,0" TextWrapping="Wrap" Text="Login" VerticalAlignment="Top" Foreground="White" FontSize="20"/>
       <TextBlock x:Name="HasloTekst" HorizontalAlignment="Left" Margin="125,117,0,0" TextWrapping="Wrap" Text="Haslo" VerticalAlignment="Top" Foreground="White" FontSize="20"/>
       <TextBox x:Name="LoginPole" HorizontalAlignment="Left" Margin="125,76,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="244" RenderTransformOrigin="0.153,0.454" Height="25" FontSize="18"/>
-      <TextBox x:Name="HasloPole" HorizontalAlignment="Left" Margin="125,165,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="244" RenderTransformOrigin="0.153,0.454" Height="25" FontSize="18"/>
+      <PasswordBox x:Name="HasloPole" HorizontalAlignment="Left" Margin="125,165,0,0" VerticalAlignment="Top" Width="244" RenderTransformOrigin="0.153,0.454" Height="25" FontSize="18"/>
       <Button x:Name="ZalozKontoPrzycisk" Content="Załóż konto" Click="ZalozKonto_Click" HorizontalAlignment="Left" Margin="130,215,0,0" VerticalAlignment="Top" Height="27" Width="120" FontSize="16"/>
       <TextBlock x:Name="ZalogujTekst" HorizontalAlignment="Left" Margin="275,217,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="18">
         <Hyperlink Click="Zaloguj_Click" Foreground="#FF0D1BF1">Zaloguj</Hyperlink>
