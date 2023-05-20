@@ -86,6 +86,12 @@ namespace ListaZadan
                     KategoriaId = kategoriaId
                 };
 
+                if (Context.Zadania.Any(zadanie => zadanie.Nazwa == zadanie.Nazwa))
+                {
+                    MessageBox.Show("Zadanie już istnieje");
+                    return;
+                }
+
                 Context.Zadania.Add(zadanie);
                 Context.SaveChanges();
                 WyswietlZadania();
@@ -114,6 +120,12 @@ namespace ListaZadan
                     Nazwa = DodajKategoriePole.Text,
                 };
 
+                if (Context.Kategorie.Any(kategoria => kategoria.Nazwa == kategoria.Nazwa))
+                {
+                    MessageBox.Show("Kategoria już istnieje");
+                    return;
+                }
+
                 Context.Kategorie.Add(kategoria);
                 Context.SaveChanges();
                 WyswietlKategorie();
@@ -141,6 +153,30 @@ namespace ListaZadan
         private void ListaKategorii_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             WyswietlZadania();
+        }
+
+        private void ListaKategorii_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            var kategoria = ListaKategorii.SelectedItem as Kategoria;
+            if (kategoria != null)
+            {
+                if (kategoria.Nazwa == "Wszystko" || kategoria.Nazwa == "Ważne")
+                {
+                    MessageBox.Show("Nie można usunąć tej kategorii");
+                    return;
+                }
+
+                var zadania = Context.Zadania.Where(zadanie => zadanie.KategoriaId == kategoria.KategoriaId).ToList();
+                foreach (var zadanie in zadania)
+                {
+                    Context.Zadania.Remove(zadanie);
+                }
+
+                Context.Kategorie.Remove(kategoria);
+                Context.SaveChanges();
+                WyswietlKategorie();
+                WyswietlZadania();
+            }
         }
     }
 }

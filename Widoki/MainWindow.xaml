@@ -23,7 +23,7 @@
     </DataGrid>
 
     <TextBox Name="DodajZadaniePole" PreviewMouseLeftButtonDown="DodajZadaniePole_PreviewMouseLeftButtonDown" KeyDown="DodajZadaniePole_KeyDown" HorizontalAlignment="Left" Margin="284,380,0,0" TextWrapping="Wrap" Text="Dodaj zadanie..." VerticalAlignment="Top" Width="212" Height="27" FontSize="16"/>
-    <ListBox Name="ListaKategorii"  Margin="107,40,537,78" SelectionChanged="ListaKategorii_SelectionChanged"/>
+    <ListBox Name="ListaKategorii"  Margin="107,40,537,78"  MouseDoubleClick="ListaKategorii_MouseDoubleClick" SelectionChanged="ListaKategorii_SelectionChanged"/>
     <TextBox Name="DodajKategoriePole" PreviewMouseLeftButtonDown="DodajKategoriePole_PreviewMouseLeftButtonDown" KeyDown="DodajKategoriePole_KeyDown" HorizontalAlignment="Left" Margin="116,380,0,0" TextWrapping="Wrap" Text="Dodaj kategorie..." VerticalAlignment="Top" Width="138" Height="27" FontSize="16"/>
     <ComboBox SelectedIndex="0" x:Name="WybierzKategorie" HorizontalAlignment="Left" Margin="510,380,0,0" VerticalAlignment="Top" Width="138" Height="27" FontSize="16"/>
   </Grid>

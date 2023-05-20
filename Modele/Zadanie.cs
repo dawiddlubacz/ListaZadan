@@ -10,7 +10,7 @@ namespace ListaZadan.Modele
     {
         public int ZadanieId { get; set; }
         public string Nazwa { get; set; }
-        public int? KategoriaId { get; set; }
+        public int KategoriaId { get; set; }
         public virtual Kategoria Kategoria { get; set; }
     }
 }
