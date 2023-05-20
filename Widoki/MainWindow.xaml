@@ -11,7 +11,7 @@
     <DataGrid x:Name="ListaZadan" AutoGenerateColumns="False" Width="400" ColumnWidth="*" Margin="271,17,129,78">
       <DataGrid.Columns >
         <DataGridTextColumn Header="Id" Binding="{Binding ZadanieId}"/>
-        <DataGridTextColumn Header="Nazwa" Binding="{Binding Nazwa}"/>
+        <DataGridTextColumn Header="Zadanie" Binding="{Binding Nazwa}"/>
         <DataGridTemplateColumn Header="Akcja">
           <DataGridTemplateColumn.CellTemplate>
             <DataTemplate>
@@ -24,7 +24,7 @@
 
     <TextBox Name="DodajZadaniePole" PreviewMouseLeftButtonDown="DodajZadaniePole_PreviewMouseLeftButtonDown" KeyDown="DodajZadaniePole_KeyDown" HorizontalAlignment="Left" Margin="284,380,0,0" TextWrapping="Wrap" Text="Dodaj zadanie..." VerticalAlignment="Top" Width="212" Height="27" FontSize="16"/>
     <ListBox Name="ListaKategorii"  Margin="107,40,537,78"  MouseDoubleClick="ListaKategorii_MouseDoubleClick" SelectionChanged="ListaKategorii_SelectionChanged"/>
-    <TextBox Name="DodajKategoriePole" PreviewMouseLeftButtonDown="DodajKategoriePole_PreviewMouseLeftButtonDown" KeyDown="DodajKategoriePole_KeyDown" HorizontalAlignment="Left" Margin="116,380,0,0" TextWrapping="Wrap" Text="Dodaj kategorie..." VerticalAlignment="Top" Width="138" Height="27" FontSize="16"/>
+    <TextBox Name="DodajKategoriePole" PreviewMouseLeftButtonDown="DodajKategoriePole_PreviewMouseLeftButtonDown" KeyDown="DodajKategoriePole_KeyDown" HorizontalAlignment="Left" Margin="107,380,0,0" TextWrapping="Wrap" Text="Dodaj kategorie..." VerticalAlignment="Top" Width="138" Height="27" FontSize="16"/>
     <ComboBox SelectedIndex="0" x:Name="WybierzKategorie" HorizontalAlignment="Left" Margin="510,380,0,0" VerticalAlignment="Top" Width="138" Height="27" FontSize="16"/>
   </Grid>
 </Window>

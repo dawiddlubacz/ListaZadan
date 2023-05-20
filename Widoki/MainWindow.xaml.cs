@@ -86,7 +86,7 @@ namespace ListaZadan
                     KategoriaId = kategoriaId
                 };
 
-                if (Context.Zadania.Any(zadanie => zadanie.Nazwa == zadanie.Nazwa))
+                if (Context.Zadania.Any(zad => zad.Nazwa == zadanie.Nazwa))
                 {
                     MessageBox.Show("Zadanie już istnieje");
                     return;
@@ -120,7 +120,7 @@ namespace ListaZadan
                     Nazwa = DodajKategoriePole.Text,
                 };
 
-                if (Context.Kategorie.Any(kategoria => kategoria.Nazwa == kategoria.Nazwa))
+                if (Context.Kategorie.Any(kat => kat.Nazwa == kategoria.Nazwa))
                 {
                     MessageBox.Show("Kategoria już istnieje");
                     return;
