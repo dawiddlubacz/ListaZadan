@@ -34,13 +34,17 @@ namespace ListaZadan
                 options.UseSqlServer(@"Data Source=(localdb)\ListaZadan;Initial Catalog=ListaZadan;");
             });
             services.AddSingleton<MainWindow>();
+            services.AddSingleton<Zaloguj>();
+            services.AddSingleton<ZalozKonto>();
         }
 
         private void OnStartup(object sender, StartupEventArgs e)
         {
             var mainWindow = ServiceProvider.GetService<MainWindow>();
+            var zalozKonto = new ZalozKonto(mainWindow);
             var zaloguj = new Zaloguj(mainWindow);
-            new ZalozKonto(zaloguj);
+            zaloguj = ServiceProvider.GetService<Zaloguj>();
+            zalozKonto = ServiceProvider.GetService<ZalozKonto>();
             zaloguj.Show();
         }
 

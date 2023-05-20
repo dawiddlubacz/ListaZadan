@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ListaZadan.BazaDanych;
+using ListaZadan.Modele;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,28 +21,51 @@ namespace ListaZadan.Widoki
     /// </summary>
     public partial class ZalozKonto : Window
     {
-        Zaloguj zaloguj;
+        MainWindow MainWindow;
+        Context Context;
 
-        public ZalozKonto()
+        public ZalozKonto(MainWindow MainWindow)
         {
+            this.MainWindow = MainWindow;
             InitializeComponent();
         }
-
-        public ZalozKonto(Zaloguj zaloguj)
+        public ZalozKonto(Context Context, MainWindow MainWindow)
         {
-            this.zaloguj = zaloguj;
+            this.MainWindow = MainWindow;
+            this.Context = Context;
             InitializeComponent();
         }
 
         private void Zaloguj_Click(object sender, RoutedEventArgs e)
         {
+            var zaloguj = new Zaloguj(this, Context);
             zaloguj.Show();
-            Close();
+            Hide();
         }
 
         private void ZalozKonto_Click(object sender, RoutedEventArgs e)
         {
-            zaloguj.Show();
+            var login = LoginPole.Text;
+            var haslo = HasloPole.Text;
+
+            var uzytkownik = Context.Uzytkownicy.FirstOrDefault(uzyt => uzyt.Login == login);
+            if (uzytkownik != null)
+            {
+                MessageBox.Show("Użytkownik o podanym loginie już istnieje");
+                return;
+            }
+
+            Context.Uzytkownicy.Add(new Uzytkownik
+            {
+                Login = login,
+                Haslo = haslo
+            });
+
+            Context.SaveChanges();
+            //var zaloguj = new Zaloguj(this, Context);
+            //zaloguj.Show();
+
+            MainWindow.Show();
             Close();
         }
     }

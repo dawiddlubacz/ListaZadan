@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using ListaZadan.BazaDanych;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,27 +22,56 @@ namespace ListaZadan.Widoki
     public partial class Zaloguj : Window
     {
         MainWindow MainWindow;
-        public Zaloguj()
-        {
-            InitializeComponent();
-        }
+        ZalozKonto ZalozKonto;
+        Context Context;
+
         public Zaloguj(MainWindow MainWindow)
         {
             this.MainWindow = MainWindow;
             InitializeComponent();
         }
+        public Zaloguj(ZalozKonto ZalozKonto, Context Context)
+        {
+            this.Context = Context;
+            this.ZalozKonto = ZalozKonto;
+            InitializeComponent();
+        }
+
+        public Zaloguj(MainWindow MainWindow, ZalozKonto ZalozKonto, Context Context)
+        {
+            this.MainWindow = MainWindow;
+            this.Context = Context;
+            this.ZalozKonto = ZalozKonto;
+            InitializeComponent();
+        }
 
         private void ZalozKonto_Click(object sender, RoutedEventArgs e)
         {
-            var zaloz = new ZalozKonto(this);
-            zaloz.Show();
+            ZalozKonto.Show();
             Hide();
         }
 
         private void Zaloguj_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow.Show();
-            Hide();
+            var login = LoginPole.Text;
+            var haslo = HasloPole.Text;
+
+            var uzytkownik = Context.Uzytkownicy.FirstOrDefault(uzyt => uzyt.Login == login && uzyt.Haslo == haslo);
+            if (uzytkownik == null)
+            {
+                MessageBox.Show("Niepoprawny login lub hasło");
+                return;
+            }
+            try
+            {
+                MainWindow.Show();
+            }
+            catch (Exception)
+            {
+                var mainWindow = new MainWindow(Context);
+                mainWindow.Show();
+            }
+            Close();
         }
     }
 }
