@@ -14,5 +14,12 @@ namespace ListaZadan.BazaDanych
         public DbSet<Zadanie> Zadania { get; set; }
         public DbSet<Kategoria> Kategorie { get; set; }
         public Context(DbContextOptions<Context> options) : base(options) { }
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured)
+            {
+                optionsBuilder.UseSqlServer("Data Source=(localdb)\\ListaZadan;Initial Catalog=ListaZadan;");
+            }
+        }
     }
 }

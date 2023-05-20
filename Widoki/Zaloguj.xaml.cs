@@ -17,7 +17,7 @@ using System.Windows.Shapes;
 namespace ListaZadan.Widoki
 {
     /// <summary>
-    /// Interaction logic for Zaloguj.xaml
+    /// Okno logowania użytkownika
     /// </summary>
     public partial class Zaloguj : Window
     {
@@ -45,12 +45,22 @@ namespace ListaZadan.Widoki
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Przekierowuje użytkownika do okna zakładania konta
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ZalozKonto_Click(object sender, RoutedEventArgs e)
         {
             ZalozKonto.Show();
             Hide();
         }
 
+        /// <summary>
+        /// Loguje użytkownika do aplikacji, jeśli podane dane są poprawne
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Zaloguj_Click(object sender, RoutedEventArgs e)
         {
             var login = LoginPole.Text;

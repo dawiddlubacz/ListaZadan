@@ -21,7 +21,7 @@ using System.Windows.Shapes;
 namespace ListaZadan
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Okno listy wszystkich zadań i kategorii
     /// </summary>
     public partial class MainWindow : Window
     {
@@ -36,6 +36,9 @@ namespace ListaZadan
             WyswietlKategorie();
         }
 
+        /// <summary>
+        /// Wyświetla wszystkie dostępne zadania
+        /// </summary>
         private void WyswietlZadania()
         {
             var kategoria = ListaKategorii.SelectedItem as Kategoria;
@@ -63,7 +66,9 @@ namespace ListaZadan
                 ListaZadan.ItemsSource = zadania;
             }
         }
-
+        /// <summary>
+        /// Wyświetla wszystkie dostępne kategorie
+        /// </summary>
         private void WyswietlKategorie()
         {
             var listaKategorii = Context.Kategorie.ToList();
@@ -72,7 +77,11 @@ namespace ListaZadan
             ListaKategorii.DisplayMemberPath = "Nazwa";
             WybierzKategorie.DisplayMemberPath = "Nazwa";
         }
-
+        /// <summary>
+        /// Dodaje nowe zadanie po wciśnięciu klawisza Enter
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void DodajZadaniePole_KeyDown(object sender, KeyEventArgs e)
         {
             var kategoria = WybierzKategorie.SelectedItem as Kategoria;
@@ -98,19 +107,33 @@ namespace ListaZadan
                 DodajZadaniePole.Text = "";
             }
         }
-
+        /// <summary>
+        /// Czyści pole z domyślnego tekstu po kliknięciu
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void DodajZadaniePole_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             if (DodajZadaniePole.Text == "Dodaj zadanie...")
                 DodajZadaniePole.Text = "";
         }
 
+        /// <summary>
+        /// Czyści pole z domyślnego tekstu po kliknięciu
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void DodajKategoriePole_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             if (DodajKategoriePole.Text == "Dodaj kategorie...")
                 DodajKategoriePole.Text = "";
         }
 
+        /// <summary>
+        /// Dodaje nową kategorię po wciśnięciu klawisza Enter
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void DodajKategoriePole_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter)
@@ -133,6 +156,11 @@ namespace ListaZadan
             }
         }
 
+        /// <summary>
+        /// Usuwa zadanie po kliknięciu przycisku "Usuń"
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void PrzyciskUsun_Click(object sender, RoutedEventArgs e)
         {
             var przycisk = sender as Button;
@@ -150,11 +178,21 @@ namespace ListaZadan
             }
         }
 
+        /// <summary>
+        /// Wyświetla liste zadań dla zaznaczonej kategorii
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ListaKategorii_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             WyswietlZadania();
         }
 
+        /// <summary>
+        /// Usuwa zaznaczoną kategorię po podwójnym kliknięciu
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ListaKategorii_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             var kategoria = ListaKategorii.SelectedItem as Kategoria;

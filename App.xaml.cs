@@ -27,6 +27,10 @@ namespace ListaZadan
             ServiceProvider = services.BuildServiceProvider();
         }
 
+        /// <summary>
+        /// Konfiguracja bazy danych dla wszystkich okien
+        /// </summary>
+        /// <param name="services"></param>
         private void ConfigureServices(ServiceCollection services)
         {
             services.AddDbContext<Context>(options =>
@@ -38,6 +42,11 @@ namespace ListaZadan
             services.AddSingleton<ZalozKonto>();
         }
 
+        /// <summary>
+        /// Pobranie konfiguracji dla wszystkich okien
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void OnStartup(object sender, StartupEventArgs e)
         {
             var mainWindow = ServiceProvider.GetService<MainWindow>();

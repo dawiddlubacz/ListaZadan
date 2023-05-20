@@ -17,7 +17,7 @@ using System.Windows.Shapes;
 namespace ListaZadan.Widoki
 {
     /// <summary>
-    /// Interaction logic for ZalozKonto.xaml
+    /// Okno zakładania konta użytkownika
     /// </summary>
     public partial class ZalozKonto : Window
     {
@@ -36,6 +36,11 @@ namespace ListaZadan.Widoki
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Przekierowuje użytkownika do okna logowania
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Zaloguj_Click(object sender, RoutedEventArgs e)
         {
             var zaloguj = new Zaloguj(this, Context);
@@ -43,6 +48,11 @@ namespace ListaZadan.Widoki
             Hide();
         }
 
+        /// <summary>
+        /// Przekierowuje użytkownika do okna zakładania konta
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ZalozKonto_Click(object sender, RoutedEventArgs e)
         {
             var login = LoginPole.Text;
