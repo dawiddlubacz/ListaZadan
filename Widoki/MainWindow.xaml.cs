@@ -41,12 +41,25 @@ namespace ListaZadan
             var kategoria = ListaKategorii.SelectedItem as Kategoria;
             if (kategoria != null)
             {
+                if (kategoria.Nazwa == "Wszystko")
+                {
+                    var wszystkieZadania = Context.Zadania.Select(zadanie => new Zadanie
+                    {
+                        ZadanieId = zadanie.ZadanieId,
+                        Nazwa = zadanie.Nazwa,
+                        KategoriaId = zadanie.KategoriaId,
+                    }).ToList();
+
+                    ListaZadan.ItemsSource = wszystkieZadania;
+                    return;
+                }
                 var zadania = Context.Zadania.Select(zadanie => new Zadanie
                 {
                     ZadanieId = zadanie.ZadanieId,
                     Nazwa = zadanie.Nazwa,
                     KategoriaId = zadanie.KategoriaId,
                 }).Where(zadanie => zadanie.KategoriaId == kategoria.KategoriaId).ToList();
+
                 ListaZadan.ItemsSource = zadania;
             }
         }
